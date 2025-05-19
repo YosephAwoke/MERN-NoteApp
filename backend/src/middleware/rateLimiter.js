@@ -1,4 +1,5 @@
-import {Ratelimit} from "@upstash/ratelimit";
+import ratelimit from "../config/upstash.js";
+// This middleware function is used to limit the rate of incoming requests
 
 const rateLimiter = async (req, res, next) => {
 
