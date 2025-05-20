@@ -17,7 +17,7 @@ const rateLimiter = async (req, res, next) => {
     // Proceed to the next middleware or route handler
     next();
   } catch (error) { 
-    console.error("Rate limit error:", error);
+    console.log("Rate limit error:", error);
     next(error);
   }
 };
