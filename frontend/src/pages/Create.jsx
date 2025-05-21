@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router";
 const Create = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [error, setError] = useState("");
+
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -15,11 +15,10 @@ const Create = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title.trim() || !content.trim()) {
-      toast.error("Please fill in all fields");
-
-      return;
-    }
+    // if (!title.trim() || !content.trim()) {
+    //   toast.error("Please fill in all fields");
+    //   return;
+    // }
     setLoading(true);
 
     try {
@@ -32,7 +31,15 @@ const Create = () => {
       navigate("/");
     } catch (error) {
       console.log("Error creating note:", error);
-      toast.error("Failed to create note");
+
+      if (error.response?.status === 429) {
+        toast.error("Slow down! You are creating notes too fast.", {
+          duration: 3000,
+          icon: "💀",
+        });
+      } else {
+        toast.error("Failed to create note");
+      }
     } finally {
       setLoading(false);
     }
@@ -48,7 +55,7 @@ const Create = () => {
           </Link>
           <div className="card bg-base-100 ">
             <div className="card-body">
-              <h2 className="card-title text-2xl mb-4">Create a New Note"</h2>
+              <h2 className="card-title text-2xl mb-4">Create a New Note</h2>
               <form onSubmit={handleSubmit}>
                 <div className="form-control mb-4">
                   <label className="label">
@@ -60,7 +67,6 @@ const Create = () => {
                     value={title}
                     placeholder="Note Title"
                     onChange={(e) => setTitle(e.target.value)}
-                    
                   />
                 </div>
                 <div className="form-control mb-4">
@@ -72,7 +78,6 @@ const Create = () => {
                     placeholder="Write your note here..."
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
-                    
                   ></textarea>
                 </div>
                 <div className="card-actions justify-end">

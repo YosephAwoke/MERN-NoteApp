@@ -10,7 +10,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-bold text-primary font-mono tracking-tight ">
             
-            JosNotApp
+            JosNoteApp
           </h1>
           <div className="flex items-center gap-4">
             <Link to={"/create"} className="btn btn-primary">
