@@ -60,7 +60,7 @@ The project is divided into two main directories:
 ![Create Note](frontend/src/screenshots/create_note.jpg)
 
 ### Note Details and update
-![Note Details](frontend/src/screenshots/edit_note.jpg)
+![Note Details](frontend/src/screenshots/edit-note.jpg)
 
 ### Empty Note
 ![Empty Note](frontend/src/screenshots/empty_note.jpg)
